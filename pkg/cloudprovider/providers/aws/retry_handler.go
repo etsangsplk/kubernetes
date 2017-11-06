@@ -76,7 +76,7 @@ func (c *CrossRequestRetryDelay) AfterRetry(r *request.Request) {
 	if r.Error == nil {
 		return
 	}
-	if r.IsErrorRetryable(r.Error) {
+	if r.IsErrorRetryable() {
 		c.backoff.ReportError()
 		glog.Warningf("Got RequestLimitExceeded error on AWS request (%s)",
 			describeRequest(r))
